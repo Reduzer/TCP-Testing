@@ -55,7 +55,7 @@ namespace TCPTesting
                 data = reader.ReadLine();
                 if (data != null)
                 {
-                    Console.WriteLine("Client " + name + " " + data);
+                    Console.WriteLine("Client: " + name + "\nMessage:" + data);
                 }
             }
         }
