@@ -9,7 +9,7 @@ namespace TCPCLient
         public static void Main()
         {
 
-            String ip = "127.0.0.1";
+            String ip = "192.168.178.37";
             int port = 5000;
             
             TestClient client = new TestClient(ip, port);
