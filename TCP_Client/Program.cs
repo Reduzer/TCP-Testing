@@ -6,14 +6,16 @@ namespace TCPCLient
 {
     public class TCPClient
     {
+        private static TestClient client;
+        
         public static void Main()
         {
-
             String ip = "192.168.178.37";
             int port = 5000;
             
-            TestClient client = new TestClient(ip, port);
+            client = new TestClient(ip, port);
         }
+        
     }
 
     public class TestClient
@@ -22,6 +24,9 @@ namespace TCPCLient
         private StreamReader _sReader;
         private StreamWriter _sWriter;
 
+        private string message;
+        
+        private bool bFirstConnection = true;
         private bool _isConnected;
 
         public TestClient(String ipaddress, int portnumber)
@@ -38,12 +43,23 @@ namespace TCPCLient
             _sWriter = new StreamWriter(_client.GetStream(), Encoding.ASCII);
 
             _isConnected = true;
-            String sData = null;
+            String sData = String.Empty;
+            
             while (_isConnected)
             {
-                Console.Write("Eingabe ");
+                if (bFirstConnection)
+                {
+                    message = "Username: ";
+                    bFirstConnection = false;
+                }
+                else
+                {
+                    message = "Message: ";
+                }
+                
+                Console.Write(message);
                 sData = Console.ReadLine();
-
+                
                 _sWriter.WriteLine(sData);
                 _sWriter.Flush();
             }
